@@ -1,0 +1,74 @@
+# GitHub Pages deployment workflow for Maudlin Street.
+#
+# This workflow builds the Eleventy site and deploys it to GitHub Pages
+# whenever `main` is updated. It is the chosen initial publisher for the
+# project-site URL `https://Meridian-Global-Ventures.github.io/maudlin-street/`.
+#
+# Doctrinal scope notes:
+#   - No custom domain (no CNAME). The custom-domain phases
+#     (`maudlinstreet.mgv.com`, then `maudlinstreet.com`) are separate
+#     authorization gates and remain future work.
+#   - No secrets. The workflow uses only built-in GITHUB_TOKEN and
+#     id-token: write for Pages OIDC; nothing project-specific.
+#   - No content ingestion. The workflow only runs `npm ci` and
+#     `npm run build`; it does not crawl, fetch, summarize, or copy
+#     external source content.
+#   - No PJLM mutation. This workflow runs in the maudlin-street repo
+#     and never touches the passions-just-like-mine source repo.
+#   - The published path prefix is `/maudlin-street/` (set by
+#     `.eleventy.js` default). Switching to root `/` for the custom-
+#     domain phases is a future-phase change.
+
+name: Deploy Maudlin Street to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

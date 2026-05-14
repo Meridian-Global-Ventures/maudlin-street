@@ -12,7 +12,7 @@ and friendly to long-form addition over time.
 
 The repo is designed to be publishable to three target URLs in order:
 
-1. **Initial:** `https://<username>.github.io/maudlin-street/`
+1. **Initial:** `https://Meridian-Global-Ventures.github.io/maudlin-street/`
    (GitHub Pages project site; base path `/maudlin-street/`)
 2. **Custom domain:** `maudlinstreet.mgv.com`
    (CNAME under the `mgv.com` apex; root path `/`)
@@ -95,15 +95,31 @@ See `docs/architecture.md` for the rationale, `docs/content-model.md`
 for the per-section content schema, and `docs/media-policy.md` for
 the no-video-in-repo rule.
 
-## Development (future, not this phase)
+## Development
 
-`package.json` declares the intended build, serve, and check scripts.
-No dependencies have been installed by the scaffold phase. A future
-phase will:
+`package.json` declares the build, serve, and check scripts. The
+Eleventy dependency tree is installed locally and pinned by
+`package-lock.json`. Common local commands:
 
-- run `npm install` to populate `node_modules/`,
-- run `npm run build` to render to `_site/`,
-- and (separately) configure GitHub Pages publication.
+- `npm ci` - reinstall the locked dependency tree from a clean state.
+- `npm run build` - render the site to `_site/` (gitignored).
+- `npm run serve` - run Eleventy in serve mode for live preview.
+- `npm run check` - run the no-dependency repo validator
+  (`scripts/check-repo.mjs`), which still works without any installed
+  package.
 
-`scripts/check-repo.mjs` is a no-dependency Node script that validates
-the scaffold without needing any installed package.
+`_site/` and `node_modules/` are gitignored and must not be committed.
+`package-lock.json` is tracked so static-site builds are deterministic.
+
+## Publication
+
+GitHub Actions is the chosen publisher for the initial project-site
+target. The workflow at `.github/workflows/pages.yml` builds the site
+and deploys it whenever `main` is updated, once the remote repo and
+Pages settings are in place on GitHub.
+
+Creating the remote repo, adding it as `origin`, pushing `main`, and
+configuring Pages on GitHub are **separate authorization gates** under
+the Mac Studio operating model (ADR 0004) and are **not performed by
+the scaffold or build-wiring phases.** See `docs/deployment-notes.md`
+for the sequenced plan.
