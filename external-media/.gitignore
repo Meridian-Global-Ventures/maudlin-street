@@ -1,0 +1,7 @@
+# Ignore everything in this folder except the README and this .gitignore.
+# Symlinks placed here for local authoring previews must remain
+# untracked. Production media references go through manifest URLs, not
+# through paths in this folder.
+*
+!.gitignore
+!README.md

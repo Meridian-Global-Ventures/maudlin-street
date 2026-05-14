@@ -1,0 +1,49 @@
+{#
+  source-note component
+  ---------------------
+  Renders a small attribution / provenance block next to a quoted fact
+  or excerpt. The component never renders a full external page body;
+  it renders only the metadata + a short excerpt and links back to the
+  source.
+
+  Expected `source` shape (passed in via Nunjucks `{% include %}` or a
+  shortcode wrapper):
+
+    {
+      source_id:               "string",
+      label:                   "string (human-readable source name)",
+      url:                     "string (canonical source URL)",
+      pjlm_authoritative_url:  "string | null",
+      retrieved_at:            "ISO 8601 date | null",
+      archive_url:             "string | null",
+      archive_timestamp:       "ISO 8601 | null",
+      quote:                   "string (short attributed excerpt, may be empty)",
+      authority:               "primary | secondary"
+    }
+
+  authority == "primary"   indicates a PJLM-derived attribution.
+  authority == "secondary" indicates an additive review candidate.
+
+  No PJLM-derived authority claim may be overwritten by a secondary
+  source_note via this component. Conflicts surface elsewhere as
+  candidate-for-review records.
+#}
+<aside class="source-note source-note--{{ source.authority or 'secondary' }}">
+  <p class="source-note__attribution">
+    <strong>Source:</strong>
+    {% if source.url %}<a href="{{ source.url }}">{{ source.label or source.source_id }}</a>
+    {% else %}{{ source.label or source.source_id }}{% endif %}
+    {% if source.authority == "primary" %}<span class="source-note__badge source-note__badge--primary">primary (PJLM)</span>
+    {% else %}<span class="source-note__badge source-note__badge--secondary">secondary candidate</span>{% endif %}
+  </p>
+
+  {% if source.quote %}
+  <blockquote class="source-note__quote">{{ source.quote }}</blockquote>
+  {% endif %}
+
+  <p class="source-note__provenance">
+    {% if source.pjlm_authoritative_url %}<span>PJLM canonical: <code>{{ source.pjlm_authoritative_url }}</code></span><br>{% endif %}
+    {% if source.retrieved_at %}<span>Retrieved: {{ source.retrieved_at }}</span>{% endif %}
+    {% if source.archive_url %}<br><span>Archive: <a href="{{ source.archive_url }}">{{ source.archive_timestamp or source.archive_url }}</a></span>{% endif %}
+  </p>
+</aside>

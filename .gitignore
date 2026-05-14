@@ -1,0 +1,30 @@
+# macOS / editor noise
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Build / dependency / cache output
+node_modules/
+_site/
+dist/
+.cache/
+.tmp/
+.eleventy-cache/
+package-lock.json
+
+# Logs
+*.log
+logs/
+
+# Local env / secrets
+.env
+.env.*
+*.local
+
+# Local-only media workspace (per-folder .gitignore inside external-media/
+# enforces the keep-only-README-and-.gitignore rule for that subtree)

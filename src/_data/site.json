@@ -1,0 +1,30 @@
+{
+  "name": "Maudlin Street",
+  "shortName": "Maudlin Street",
+  "description": "A content-first companion site for Smiths/Morrissey research: lyric notes, discography commentary, interview metadata, source citations, and archive-derived research.",
+  "language": "en",
+  "publication_targets": [
+    {
+      "phase": "initial",
+      "url": "https://<username>.github.io/maudlin-street/",
+      "base_path": "/maudlin-street/",
+      "status": "not_configured"
+    },
+    {
+      "phase": "custom_domain",
+      "url": "https://maudlinstreet.mgv.com/",
+      "base_path": "/",
+      "status": "not_configured"
+    },
+    {
+      "phase": "apex",
+      "url": "https://maudlinstreet.com/",
+      "base_path": "/",
+      "status": "not_configured"
+    }
+  ],
+  "definitive_source_of_truth": "archived passionsjustlikemine.com",
+  "source_authority_policy_doc": "/docs/source-authority.md",
+  "media_policy_doc": "/docs/media-policy.md",
+  "deployment_notes_doc": "/docs/deployment-notes.md"
+}

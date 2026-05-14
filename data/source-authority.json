@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "definitive_source_of_truth": "archived passionsjustlikemine.com",
+  "definitive_source_repo_path": "/Users/johns-mac-studio/workspace/passions-just-like-mine",
+  "definitive_source_repo_role": "Local static reconstruction of archived passionsjustlikemine.com. Read-only from the perspective of this site; this site references but never modifies it.",
+  "definitive_source_corpus_path": "/Users/johns-mac-studio/workspace/passions-just-like-mine/_inventory/knowledge-source-corpus/sources.json",
+  "source_authority_policy": "Archived passionsjustlikemine.com / the local reconstruction derived from it is always authoritative for facts, pages, lyrics, assets, and provenance records it covers. Every other source is additive review material only; secondary sources may supplement but may not replace passionsjustlikemine.com-derived content.",
+  "overwrite_policy": "No passionsjustlikemine.com-derived page, lyric, fact, asset, inventory record, or source-of-truth assertion may be overwritten, normalized, superseded, or weakened by any secondary source, Wayback lyric candidate, advisor recommendation, or automated workflow without John's express authorization. Conflicts between a secondary source and passionsjustlikemine.com are recorded as candidates for review, not applied.",
+  "conflict_handling": "Conflicts between a secondary source and PJLM are recorded as candidate-for-review records. The PJLM-derived content remains in place until John explicitly authorizes a change.",
+  "first_future_ingestion_effort": "A later network-enabled phase will target retired Smiths/Morrissey lyric sources as captured by the Wayback Machine to recover as many lyric pages as possible. The scaffold phase performs no crawling.",
+  "applies_to": [
+    "src/**/*",
+    "content/**/*",
+    "data/**/*",
+    "docs/**/*",
+    "scripts/**/*"
+  ],
+  "enforcement": {
+    "tool_enforced": false,
+    "reviewer_enforced": true,
+    "note": "Doctrine encoded in metadata and prose. Any future candidate-merge tool must read this file before applying any change that could touch PJLM-derived content."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema_note": "Example media-pointer manifest. Demonstrates the record shape. No real media is referenced. Replace placeholder values during authoring. Production media files never live in this repo.",
+  "manifest_version": "0.1.0",
+  "default_provider_policy": "External providers only. Video and audio are never committed to this repo.",
+  "items": [
+    {
+      "media_id": "example-fictional-interview-placeholder",
+      "kind": "video",
+      "title": "Example Fictional Placeholder Interview",
+      "provider": "mgv_server",
+      "url": "https://media.example.invalid/maudlin-street/placeholder/example-fictional-interview-placeholder.mp4",
+      "poster_image": null,
+      "duration": null,
+      "rights_notes": "Placeholder record only. Replace with a real record once a real external video is referenced and rights are documented.",
+      "source_ids": [],
+      "pjlm_authoritative_url": null,
+      "last_verified_at": null
+    },
+    {
+      "media_id": "example-fictional-audio-placeholder",
+      "kind": "audio",
+      "title": "Example Fictional Placeholder Audio Clip",
+      "provider": "archive_org",
+      "url": "https://archive.example.invalid/maudlin-street/placeholder/example-fictional-audio-placeholder.mp3",
+      "poster_image": null,
+      "duration": null,
+      "rights_notes": "Placeholder record only.",
+      "source_ids": [],
+      "pjlm_authoritative_url": null,
+      "last_verified_at": null
+    }
+  ]
+}

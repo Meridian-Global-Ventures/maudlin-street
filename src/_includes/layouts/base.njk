@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ site.language or 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} - {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+    {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ '/' | url }}">{{ site.shortName or site.name }}</a>
+      <nav class="site-nav">
+        <a href="{{ '/lyrics/' | url }}">Lyrics</a>
+        <a href="{{ '/interviews/' | url }}">Interviews</a>
+        <a href="{{ '/sources/' | url }}">Sources</a>
+        <a href="{{ '/about/' | url }}">About</a>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Maudlin Street is a content-first research site.
+        The local reconstruction of archived
+        <code>passionsjustlikemine.com</code> is the definitive source
+        of truth for content this site references. See
+        <a href="{{ '/about/' | url }}">About</a> for the full
+        source-authority doctrine.
+      </p>
+    </footer>
+  </body>
+</html>
