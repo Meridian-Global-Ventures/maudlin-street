@@ -8,14 +8,14 @@
 .idea/
 .vscode/
 
-# Build / dependency / cache output
+# Build / dependency / cache output (package-lock.json is intentionally
+# tracked, not ignored, so static-site builds are deterministic).
 node_modules/
 _site/
 dist/
 .cache/
 .tmp/
 .eleventy-cache/
-package-lock.json
 
 # Logs
 *.log

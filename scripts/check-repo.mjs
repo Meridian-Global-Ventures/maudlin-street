@@ -18,6 +18,10 @@
 //      (definitive_source_of_truth = "archived passionsjustlikemine.com",
 //      and overwrite_policy mentions "John's express authorization").
 //   7. package.json is valid JSON.
+//   8. package-lock.json is present in REQUIRED_FILES (tracked, not
+//      ignored), so static-site builds remain deterministic. Build
+//      output directories (node_modules/, _site/, dist/, .cache/,
+//      .tmp/, .eleventy-cache/) remain ignored.
 //
 // Exits 0 on PASS, 1 on FAIL with a summary of failures.
 //
@@ -42,6 +46,7 @@ const REQUIRED_FILES = [
   "README.md",
   ".gitignore",
   "package.json",
+  "package-lock.json",
   ".eleventy.js",
   "src/index.md",
   "src/about.md",
@@ -209,14 +214,18 @@ function checkPackageJsonIsValid() {
   }
 }
 
-function checkNoBuildArtifacts() {
-  for (const d of ["node_modules", "_site", "dist", "package-lock.json"]) {
+function checkBuildArtifactsAreIgnored() {
+  // node_modules/, _site/, dist/, and cache directories are local
+  // build artifacts that must not be committed; they are gitignored.
+  // package-lock.json is intentionally tracked (see REQUIRED_FILES)
+  // so static-site builds are deterministic and is not in this list.
+  for (const d of ["node_modules", "_site", "dist", ".cache", ".tmp", ".eleventy-cache"]) {
     const abs = join(repoRoot, d);
     try {
       const st = lstatSync(abs);
       if (st.isDirectory() || st.isFile()) {
         notes.push(
-          `${d} exists at the repo root; ensure it is gitignored. (.gitignore covers node_modules/, _site/, dist/, package-lock.json by default.)`
+          `${d} exists at the repo root; it is gitignored and must not be committed. (.gitignore covers node_modules/, _site/, dist/, .cache/, .tmp/, .eleventy-cache/.)`
         );
       }
     } catch (err) {
@@ -232,7 +241,7 @@ checkNoDisallowedSymlinks();
 checkExternalMediaGitignore();
 checkSourceAuthorityJson();
 checkPackageJsonIsValid();
-checkNoBuildArtifacts();
+checkBuildArtifactsAreIgnored();
 
 const passed = failures.length === 0;
 
