@@ -1,0 +1,111 @@
+{
+  "doctrine_note": "Section metadata for the Maudlin Street archive gateway and inner-page navigation. Section IDs match the CSS data-section attribute on <body>; palettes are defined in src/assets/css/site.css. Child links are inline submenu entries shown when the parent is the active section (PJLM-style indented submenus). Status values follow the section-record schema: 'shell' = placeholder index, 'in_progress' = partial content, 'live' = first-class authored content. No section is 'live' yet at scaffold stage; everything is 'shell'.",
+  "sections": [
+    {
+      "id": "releases",
+      "label": "Releases",
+      "url": "/releases/",
+      "summary": "Smiths and Morrissey discography, chronological and by edition.",
+      "children": [
+        { "label": "Smiths discography", "url": "/releases/#smiths" },
+        { "label": "Morrissey discography", "url": "/releases/#morrissey" },
+        { "label": "Compilations and reissues", "url": "/releases/#compilations" },
+        { "label": "Singles attack", "url": "/releases/#singles" },
+        { "label": "Tributes and covers", "url": "/releases/#tributes" }
+      ],
+      "status": "shell"
+    },
+    {
+      "id": "bootlegs",
+      "label": "Bootlegs",
+      "url": "/bootlegs/",
+      "summary": "Unofficial live recordings, audience tapes, and broadcast captures.",
+      "status": "shell"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "url": "/media/",
+      "summary": "Television, radio, magazine, and bibliographic appearances.",
+      "children": [
+        { "label": "Television", "url": "/media/#tv" },
+        { "label": "Radio", "url": "/media/#radio" },
+        { "label": "Magazines", "url": "/media/#magazines" },
+        { "label": "Bibliography", "url": "/media/#bibliography" },
+        { "label": "Interviews", "url": "/interviews/" }
+      ],
+      "status": "shell"
+    },
+    {
+      "id": "videos",
+      "label": "Videos",
+      "url": "/videos/",
+      "summary": "Promos, performances, and documentary references. No media in repo; remote URLs only.",
+      "status": "shell"
+    },
+    {
+      "id": "songs",
+      "label": "Songs",
+      "url": "/songs/",
+      "summary": "Alphabetical song index. Links forward into lyric notes and discography entries.",
+      "status": "shell"
+    },
+    {
+      "id": "lyrics",
+      "label": "Lyrics",
+      "url": "/lyrics/",
+      "summary": "Lyric notes only. Full lyric bodies are never republished.",
+      "children": [
+        { "label": "Smiths lyrics", "url": "/lyrics/#smiths" },
+        { "label": "Morrissey lyrics", "url": "/lyrics/#morrissey" }
+      ],
+      "status": "shell"
+    },
+    {
+      "id": "live",
+      "label": "Live",
+      "url": "/live/",
+      "summary": "Concert chronology by tour and year.",
+      "children": [
+        { "label": "Smiths live history", "url": "/live/#smiths" },
+        { "label": "Morrissey live history", "url": "/live/#morrissey" }
+      ],
+      "status": "shell"
+    },
+    {
+      "id": "influence",
+      "label": "Influence",
+      "url": "/influence/",
+      "summary": "Predecessors, contemporaries, and the inheritance chain.",
+      "status": "shell"
+    },
+    {
+      "id": "links",
+      "label": "Links",
+      "url": "/links/",
+      "summary": "External resources and successor archives.",
+      "status": "shell"
+    },
+    {
+      "id": "sources",
+      "label": "Sources",
+      "url": "/sources/",
+      "summary": "Source authority register. PJLM is the definitive source of truth.",
+      "status": "shell"
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "url": "/about/",
+      "summary": "What this site is, what it is not, and how source authority works.",
+      "status": "shell"
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "url": "/search/",
+      "summary": "Placeholder. Static-search wiring is a future, separately authorized phase.",
+      "status": "shell"
+    }
+  ]
+}

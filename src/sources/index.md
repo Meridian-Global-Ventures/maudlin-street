@@ -1,32 +1,50 @@
 ---
 layout: layouts/base.njk
 title: Sources
-description: External knowledge sources this site draws from.
+description: Source authority register. PJLM is the definitive source of truth; everything else is additive review material.
 permalink: /sources/
+activeSection: sources
+section: sources
 ---
 
 # Sources
 
-This section indexes the external knowledge sources that feed
-Maudlin Street.
+<span class="archive-status" data-status="shell">shell — register pending Wayback recovery</span>
 
-The **definitive source of truth** is the local reconstruction of
-archived `passionsjustlikemine.com`, maintained in the companion repo
-`passions-just-like-mine`. Every other source listed in this section
-is additive review material: it may supplement PJLM-derived content
-but it may not replace it.
+This section is the source-authority register for Maudlin Street. Every claim on this site traces back to one of the sources catalogued here.
 
-The source-corpus registry that this section draws from lives in the
-companion repo at `_inventory/knowledge-source-corpus/`. It records 14
-external Smiths/Morrissey sources (fan archives, location references,
-review collections, a Morrissey fanzine domain, two GeoCities legacy
-captures, two Tripod legacy captures) with `live_status` set to
-`unverified` until a future network-enabled ingestion phase confirms
-each one.
+<div class="archive-callout">
+The <strong>definitive source of truth</strong> is the local reconstruction of archived <code>passionsjustlikemine.com</code>, maintained in the companion repo <code>passions-just-like-mine</code>. Every other source listed in this section is additive review material — supplemental, never replacing PJLM-derived content. See <a href="{{ '/about/' | url }}">About</a> for the full doctrine and <code>data/source-authority.json</code> for the machine-readable doctrine markers.
+</div>
 
-The first planned future ingestion effort that will feed this section
-is Wayback Machine recovery from retired Smiths/Morrissey lyric
-sources.
+<div class="archive-group">
+  <h2 class="archive-group__title">Primary authority</h2>
+  <ul class="archive-index">
+    <li><strong>Passions Just Like Mine</strong> <span class="authority" data-authority="primary">primary</span> — local reconstruction at <code>passions-just-like-mine</code>; definitive for every fact, page, lyric, asset, and provenance record it covers.</li>
+  </ul>
+</div>
 
-Per-source pages will be authored in later phases. This is a
-scaffold index page.
+<div class="archive-group">
+  <h2 class="archive-group__title">Secondary candidates (additive review material)</h2>
+  <p class="archive-intro">14 external sources are registered in the companion repo's source-corpus registry at <code>_inventory/knowledge-source-corpus/</code>. All carry <code>live_status = unverified</code> until a future network-enabled ingestion phase confirms each one. The grouping below is illustrative; the canonical register is the JSON in the companion repo.</p>
+  <ul class="archive-index">
+    <li class="is-year">Fan archives</li>
+    <li class="is-indent"><em>Records pending.</em></li>
+    <li class="is-year">Location references</li>
+    <li class="is-indent"><em>Records pending.</em></li>
+    <li class="is-year">Review collections</li>
+    <li class="is-indent"><em>Records pending.</em></li>
+    <li class="is-year">Morrissey fanzine domains</li>
+    <li class="is-indent"><em>Records pending.</em></li>
+    <li class="is-year">Legacy captures (GeoCities, Tripod)</li>
+    <li class="is-indent"><em>Records pending.</em></li>
+  </ul>
+</div>
+
+## Conflict policy
+
+Conflicts between a secondary source and PJLM are recorded as **candidates for review**, not applied automatically. The conflict-record schema lives in `content/sources/README.md`. No PJLM-derived assertion is overwritten without John's express authorization.
+
+## Schema reference
+
+Per-source fields (from `content/sources/README.md`): `source_id`, `label`, `canonical_url`, `archive_url`, `archive_timestamp`, `last_known_live_check`, `live_status` (`unverified` is the default at scaffold stage), `type` (`fan_archive` / `location` / `review_collection` / `fanzine` / `legacy_capture`), `pjlm_overlap_summary`, `notes`, `authority` (`primary` for PJLM, `secondary` for everything else).

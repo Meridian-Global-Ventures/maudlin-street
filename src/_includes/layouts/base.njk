@@ -7,29 +7,38 @@
     {% if description %}<meta name="description" content="{{ description }}">{% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
   </head>
-  <body>
-    <header class="site-header">
-      <a class="site-title" href="{{ '/' | url }}">{{ site.shortName or site.name }}</a>
-      <nav class="site-nav">
-        <a href="{{ '/lyrics/' | url }}">Lyrics</a>
-        <a href="{{ '/interviews/' | url }}">Interviews</a>
-        <a href="{{ '/sources/' | url }}">Sources</a>
-        <a href="{{ '/about/' | url }}">About</a>
-      </nav>
-    </header>
-
-    <main class="site-main">
-      {{ content | safe }}
-    </main>
+  <body data-section="{{ section or 'inner' }}"{% if isGateway %} data-gateway="true"{% endif %}>
+    {% if isGateway %}
+      <div class="gateway">
+        <div class="gateway__identity">
+          {% include "components/identity-block.njk" %}
+        </div>
+        <div class="gateway__menu">
+          {% include "components/main-menu.njk" %}
+        </div>
+      </div>
+    {% else %}
+      <div class="page">
+        <aside class="page__side">
+          {% include "components/main-menu.njk" %}
+          {% include "components/to-main-menu.njk" %}
+        </aside>
+        <main class="page__content">
+          {{ content | safe }}
+        </main>
+      </div>
+    {% endif %}
 
     <footer class="site-footer">
       <p>
-        Maudlin Street is a content-first research site.
-        The local reconstruction of archived
-        <code>passionsjustlikemine.com</code> is the definitive source
-        of truth for content this site references. See
-        <a href="{{ '/about/' | url }}">About</a> for the full
-        source-authority doctrine.
+        <strong>Source-authority doctrine.</strong>
+        The local reconstruction of archived <code>passionsjustlikemine.com</code>
+        is the definitive source of truth for content this site references.
+        Secondary sources are additive review material only. No PJLM-derived
+        page, lyric, fact, asset, inventory record, or source-of-truth assertion
+        is overwritten, normalized, superseded, or weakened without John's
+        express authorization. See <a href="{{ '/about/' | url }}">About</a>
+        and <a href="{{ '/sources/' | url }}">Sources</a>.
       </p>
     </footer>
   </body>

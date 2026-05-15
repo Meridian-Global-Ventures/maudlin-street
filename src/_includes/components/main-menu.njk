@@ -1,0 +1,46 @@
+{#
+  main-menu component
+  -------------------
+  Renders the PJLM-style stacked archive menu used on every page.
+
+  Inputs:
+    activeSection  (string | null) — section id of the active page, if any
+    archiveSections             — passed in by Eleventy global data
+    isGateway      (bool)       — when true, the active item is not rendered
+                                  as a back-to-gateway link (it is the gateway).
+
+  Behaviour:
+    - Stacked rectangular menu rows.
+    - When activeSection matches a row that has children, the children are
+      rendered as an indented submenu directly under the parent (PJLM
+      pattern from index-releases.htm / index-media.htm).
+    - When activeSection matches a row, that row's link points back to the
+      gateway "/", so the active row works as a "to main menu" return.
+      Exception: on the gateway page itself, every row links to its own
+      section URL.
+#}
+<nav class="archive-menu" aria-label="Main archive menu">
+  <ul class="archive-menu__list">
+    {%- for s in archiveSections.sections -%}
+      {%- set isActive = (activeSection == s.id) -%}
+      <li class="archive-menu__row{% if isActive %} is-active{% endif %}">
+        <a class="archive-menu__link"
+           href="{{ (('/' if isActive and not isGateway else s.url)) | url }}">
+          {%- if isActive and not isGateway -%}
+            <span class="archive-menu__return-glyph" aria-hidden="true">&larr;</span>
+          {%- endif -%}
+          {{ s.label }}
+        </a>
+        {%- if isActive and s.children -%}
+          <ul class="archive-menu__submenu">
+            {%- for c in s.children -%}
+              <li class="archive-menu__submenu-row">
+                <a class="archive-menu__submenu-link" href="{{ c.url | url }}">{{ c.label }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

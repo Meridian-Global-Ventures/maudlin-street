@@ -1,0 +1,11 @@
+{#
+  to-main-menu component
+  ----------------------
+  Compact return path back to the archive gateway. Mirrors PJLM's
+  floating "to main menu" link in spirit (lyrics-smiths.htm and similar
+  detail pages), but implemented as a static CSS-positioned block rather
+  than a JS-driven floating div. Always present on inner pages.
+#}
+<aside class="to-main-menu" aria-label="Return to archive gateway">
+  <a class="to-main-menu__link" href="{{ '/' | url }}">&larr; to main menu</a>
+</aside>
